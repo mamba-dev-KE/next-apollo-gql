@@ -1,26 +1,32 @@
-html,
-body {
-  padding: 0;
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
-}
-
-a {
-  color: inherit;
-  text-decoration: none;
-}
-
 * {
   box-sizing: border-box;
 }
 
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
-  }
-  body {
-    color: white;
-    background: black;
-  }
+body {
+  background-color: hsl(240, 71%, 5%);
+  color: hsl(0, 0%, 60%);
+  font-family: sans-serif;
+}
+
+.launches {
+  display: flex;
+  gap: 2rem;
+
+  flex-wrap: wrap;
+  justify-content: center;
+
+  padding: 2rem 0;
+}
+
+.launch {
+  background-color: hsl(9 100% 64% / 0.4);
+  width: 40%;
+  max-width: 28rem;
+
+  padding: 20px;
+  border-radius: 0.5rem;
+}
+
+.movie-name {
+  color: hsl(0, 0%, 100%);
 }

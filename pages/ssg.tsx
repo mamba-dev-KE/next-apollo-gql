@@ -1,11 +1,10 @@
 import { gql } from '@apollo/client';
 import type { NextPage } from 'next';
 import client from '../apollo-client';
-import styles from '../styles/Home.module.css';
+import { fetchDate } from '../utils/fetchDate';
 
 interface SSGProps {
   nextLaunch: {
-    __typename: string;
     mission_name: string;
     launch_date_local: string;
     launch_site: {
@@ -15,26 +14,14 @@ interface SSGProps {
   };
 }
 
-const useDate = (date: string) => {
-  const newDate = new Date(date);
-
-  const day = newDate.getDate();
-  const month = newDate.getMonth();
-  const year = newDate.getFullYear();
-
-  return [day, month, year];
-};
-
 const SSG: NextPage<SSGProps> = ({ nextLaunch }) => {
-  const { __typename, mission_name, launch_date_local, launch_site } =
-    nextLaunch;
+  const { mission_name, launch_date_local, launch_site } = nextLaunch;
 
   return (
-    <div className={styles.container}>
-      <h2>{__typename}</h2>
-      <p>Mission Name: {mission_name}</p>
+    <div className="launch">
+      <h4 className="mission-name">Mission Name: {mission_name}</h4>
       <p>Launch Site: {launch_site.site_name_long}</p>
-      <p>Date: {useDate(launch_date_local).join('-')}</p>
+      <p>Date: {fetchDate(launch_date_local).join('-')}</p>
     </div>
   );
 };

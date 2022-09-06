@@ -1,10 +1,8 @@
 import { gql, useQuery } from '@apollo/client';
 import type { NextPage } from 'next';
-import { useId } from 'react';
-import { fetchDate } from './isr';
+import { fetchDate } from '../utils/fetchDate';
 
 interface LaunchSite {
-  __typename: string;
   mission_name: string;
   launch_date_local: string;
   launch_site: {
@@ -32,21 +30,16 @@ const CSR: NextPage = () => {
   return (
     <div>
       {loading && <p>loading</p>}
+
       {data && (
-        <div>
+        <div className="launches">
           {launchesPast?.map(
             (
-              {
-                __typename,
-                mission_name,
-                launch_site,
-                launch_date_local,
-              }: LaunchSite,
+              { mission_name, launch_site, launch_date_local }: LaunchSite,
               i: number
             ) => (
-              <div key={i}>
-                <h2>{__typename}</h2>
-                <p>Mission Name: {mission_name}</p>
+              <div key={i} className="launch">
+                <h4 className="mission-name">Mission Name: {mission_name}</h4>
                 <p>Launch Site: {launch_site.site_name_long}</p>
                 <p>Date: {fetchDate(launch_date_local).join('-')}</p>
               </div>
@@ -54,7 +47,7 @@ const CSR: NextPage = () => {
           )}
         </div>
       )}
-      {error && <p>{JSON.stringify(error)}</p>}
+      {error && <p>{error.message.toLowerCase()}</p>}
     </div>
   );
 };
