@@ -8,6 +8,15 @@ body {
   font-family: sans-serif;
 }
 
+a:visited,
+a:link {
+  color: hsl(0, 0%, 100%);
+  text-decoration: none;
+
+  font-size: 1rem;
+  font-weight: bold;
+}
+
 .launches {
   display: flex;
   gap: 2rem;
@@ -19,12 +28,14 @@ body {
 }
 
 .launch {
-  background-color: hsl(9 100% 64% / 0.4);
   width: 40%;
   max-width: 28rem;
 
   padding: 20px;
   border-radius: 0.5rem;
+
+  background: hsla(0, 15%, 29%, 0.2);
+  backdrop-filter: blur(10px);
 }
 
 .movie-name {
